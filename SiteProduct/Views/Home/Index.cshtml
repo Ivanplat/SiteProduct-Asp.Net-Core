@@ -1,0 +1,21 @@
+﻿@using SiteProduct.Models
+@model IEnumerable<Product>
+<html>
+    <head>
+        <title>Product</title>
+    </head>
+    <body>
+        <table>
+            <tr><td>Id</td><td>Name</td><td>Price</td><td>Date</td></tr>
+        @foreach(var product in Model ?? new List<Product>())
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Name</td>
+                <td>@product.Price.ToString("C")</td>
+                <td>@product.ProductionTime.ToString("dd.MM.yyyy")</td>
+            </tr>    
+        }
+    </table>
+    </body>
+</html>
