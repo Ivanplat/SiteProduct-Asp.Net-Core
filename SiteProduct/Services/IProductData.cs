@@ -5,5 +5,7 @@ namespace SiteProduct.Services
     public interface IProductData
     {
         IEnumerable<Product> GetAll();
+
+        public Product Get(int id);
     }
 }
