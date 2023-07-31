@@ -44,5 +44,20 @@ namespace SiteProduct.Controllers
             };
             return View(productViewModel);
         }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Create(Product model) 
+        { 
+            if(ModelState.IsValid)
+            {
+                var newId = _products.Add(model);
+                return RedirectToAction("Details", new { id = newId });
+            }
+            return View();
+        }
     }
 }

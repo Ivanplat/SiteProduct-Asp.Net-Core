@@ -7,5 +7,6 @@ namespace SiteProduct.Services
         IEnumerable<Product> GetAll();
 
         public Product Get(int id);
+        int Add(Product newProduct);
     }
 }

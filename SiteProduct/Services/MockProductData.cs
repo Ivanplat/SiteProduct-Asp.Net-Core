@@ -1,4 +1,5 @@
 ﻿using SiteProduct.Models;
+using System.ComponentModel;
 
 namespace SiteProduct.Services
 {
@@ -21,6 +22,12 @@ namespace SiteProduct.Services
         public Product Get(int id)
         {
             return _products.FirstOrDefault(x => x.Id.Equals(id)) ?? new Product() { Id = -1 };
+        }
+        public int Add(Product newProduct)
+        {
+            newProduct.Id = _products.Max(p => p.Id) + 1;
+            _products.Add(newProduct);
+            return newProduct.Id;
         }
     }
 }
