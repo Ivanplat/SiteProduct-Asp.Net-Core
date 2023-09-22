@@ -50,7 +50,7 @@ namespace SiteProduct.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Product model) 
+        public IActionResult Create(Product model) 
         { 
             if(ModelState.IsValid)
             {
@@ -58,6 +58,28 @@ namespace SiteProduct.Controllers
                 return RedirectToAction("Details", new { id = newId });
             }
             return View();
+        }
+        [HttpGet]
+        public IActionResult Edit(int id) 
+        { 
+            var product = _products.Get(id);
+            if(product?.Id == -1 || product == null) 
+            {
+                return RedirectToAction("Index");
+            }
+            return View(product);
+        }
+        [HttpPost]
+        public IActionResult Edit(int id, Product model)
+        {
+            var product = _products.Get(id);
+            if (product?.Id == -1 || product == null || !ModelState.IsValid)
+            {
+                return View(model);
+            }
+            model.Id = product.Id;
+            _products.Save(model);
+            return RedirectToAction("Details", new { id = model.Id });
         }
     }
 }

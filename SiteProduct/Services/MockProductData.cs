@@ -29,5 +29,15 @@ namespace SiteProduct.Services
             _products.Add(newProduct);
             return newProduct.Id;
         }
+        public void Save(Product product)
+        {
+            _products.Where(x => x.Id == product.Id).ToList().ForEach(p =>
+            {
+                p.Name = product.Name;
+                p.Price = product.Price;
+                p.ProductionTime = product.ProductionTime;
+                p.CategoryId = product.CategoryId;
+            });
+        }
     }
 }

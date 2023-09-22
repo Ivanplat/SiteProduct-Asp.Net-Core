@@ -5,7 +5,7 @@ namespace SiteProduct.Models
     public class Product
     {
         public int Id { get; set; }
-        [Required, MinLength(3), MaxLength(5), Display(Name = "Наименование")]
+        [Required, MinLength(3), MaxLength(50), Display(Name = "Наименование")]
         public string Name { get; set; } = string.Empty;
         [Required, Range(0.01d, 1000.0d), Display(Name = "Цена")]
         public decimal Price { get; set; }

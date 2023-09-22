@@ -3,19 +3,22 @@
     ViewBag.Title = "Домашняя страница";
 }
 <table>
-    <tr><td>Id</td><td>Имя</td><td>Цена</td><td>Дата изготовления</td><td>Категория</td></tr>
+    <tr><td>Имя</td><td>Цена</td><td>Дата изготовления</td><td>Категория</td></tr>
     @foreach (var product in Model ?? new List<ProductViewModel>())
     {
         <tr>
-            <td>
-                @Html.ActionLink(product.Id.ToString(), "Details",
-            new {id = product.Id})
-            </td>
             <td>@product.Name</td>
             <td>@product.Price.ToString("C")</td>
             <td>@product.ProductionTime.ToString("dd.MM.yyyy")</td>
             <td>@product.Category</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@product.Id">Подробности</a>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@product.Id">Изменить</a>
+            </td>
         </tr>
     }
 </table>
+<a asp-action="Create">Добавить</a>
 @section footer{<div>Это нижний колонтитул домашней страницы</div>}

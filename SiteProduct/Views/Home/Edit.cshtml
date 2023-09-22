@@ -1,9 +1,9 @@
 ﻿@model Product
 @{
-    ViewBag.Title = "Новый элемент";
+    ViewBag.Title = $"Изменить @{Model?.Name}";
 }
 <h2>Новый товар</h2>
-<form asp-action="Create" method="post">
+<form asp-action="Edit" method="post">
     <div asp-validation-summary="All"></div>
     <table>
         <tr>
@@ -27,13 +27,13 @@
                 <select asp-for="CategoryId"
                         asp-items="@(new SelectList(category.GetCategories(),
             nameof(TypeProduct.Id), nameof(TypeProduct.TypeName)))">
-                    <option selected="selected" disabled="disabled">Выберете категорию</option>
-                </select>
+        <option selected="selected" disabled="disabled">Выберете категорию</option>
+        </select>
             </td>
             <td><span asp-validation-for="CategoryId"></span></td>
         </tr>
     </table>
-    <input type="submit" value="Добавить"/>
+    <input type="submit" value="Изменить" />
 </form>
 <div>
     <a asp-action="Index">Назад к списку</a>
